@@ -2,7 +2,7 @@ async function fetchWeather() {
   let searchInput = document.getElementById("search").value;
   const weatherDataSection = document.getElementById("weather-data");
   weatherDataSection.style.display = "block";
-  const apiKey = "26c70156d1e907d66ddb6ac227211119"; 
+  const apiKey = "REPLACE WITH YOUR API KEY"; 
 
   if (searchInput == "") {
     weatherDataSection.innerHTML = `
@@ -13,7 +13,7 @@ async function fetchWeather() {
     `;
 
     document.getElementById("search").value = "";
-    return; // Stop here if input is empty
+    return; 
   }
 
   const geocodeData = await getLonAndLat();
@@ -21,7 +21,7 @@ async function fetchWeather() {
 
   getWeatherData(geocodeData.lon, geocodeData.lat);
 
-  // Moved these functions outside the if-block:
+  // country code is 32 since I live in Belgium
   async function getLonAndLat() {
     const countryCode = 32;
     const geocodeURL = `https://api.openweathermap.org/geo/1.0/direct?q=${searchInput.replace(" ", "%20")},${countryCode}&limit=1&appid=${apiKey}`;
